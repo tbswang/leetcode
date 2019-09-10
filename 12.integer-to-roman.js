@@ -47,7 +47,8 @@ var intToRoman = function (num) {
       if (e <= num) {
         low = e;
       }
-      return;
+      // TODO:
+      // return; forEach不能中断
     })
     return low;
   }
