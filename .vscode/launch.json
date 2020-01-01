@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/a.out",
+      "args": [],
+      "preLaunchTask": "build",
+    }
+  ]
+}

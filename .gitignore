@@ -2,6 +2,5 @@
 *.iml
 *.code-workspace
 *.out
-.vscode
 *.o
 *.dSYM*
