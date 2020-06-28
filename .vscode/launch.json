@@ -2,6 +2,15 @@
   "version": "2.0.0",
   "configurations": [
     {
+      "name": "js dgb",
+      "program": "${file}",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
+    {
       "name": "cpp dbg",
       "type": "lldb",
       "request": "launch",
