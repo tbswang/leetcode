@@ -3,33 +3,24 @@
   "tasks": [
     {
       "label": "build",
-      "command": "clang++",
+      "command": "/usr/bin/g++",
       "type": "shell",
       "args": [
         "${file}",
         "-std=c++11",
-        "-g"
+        "-g",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
       ],
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
+      "options": {
+        "cwd": "/usr/bin"
       },
-      "problemMatcher": {
-        "owner": "cpp",
-        "fileLocation": [
-          "relative",
-          "${workspaceRoot}"
-        ],
-        "pattern": {
-          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-          "file": 1,
-          "line": 2,
-          "column": 3,
-          "severity": 4,
-          "message": 5
-        }
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
     }
   ]
