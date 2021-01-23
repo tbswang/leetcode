@@ -2,6 +2,18 @@
   "version": "2.0.0",
   "configurations": [
     {
+      "name": "(lldb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: clang++ build active file",
+    },
+    {
       "name": "js dgb",
       "program": "${file}",
       "request": "launch",
@@ -12,7 +24,7 @@
     },
     {
       "name": "cpp dbg",
-      "type": "lldb",
+      "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/a.out",
       "args": [],
