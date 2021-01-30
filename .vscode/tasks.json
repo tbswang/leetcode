@@ -27,8 +27,9 @@
       "args": [
         "-g",
         "${file}",
+        "-std=c++11",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/tmp/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
