@@ -4,6 +4,7 @@
  * [206] 反转链表
  */
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct ListNode
@@ -28,17 +29,34 @@ struct ListNode
 class Solution
 {
 public:
+    // 迭代
+    // ListNode *reverseList(ListNode *head)
+    // {
+    //     ListNode* pre = nullptr;
+    //     while (head)
+    //     {
+    //         ListNode* next = head->next;
+    //         head->next = pre;
+    //         pre = head;
+    //         head = next;
+    //     }
+    //     return pre;
+    // }
+
+    // 递归
     ListNode *reverseList(ListNode *head)
     {
-        ListNode* pre = nullptr;
-        while (head)
+        if (head == nullptr || head->next == nullptr)
+            return head;
+        ListNode *newHead = reverseList(head->next);
+        ListNode *cur = newHead;
+        while (cur->next)
         {
-            ListNode* next = head->next;
-            head->next = pre;
-            pre = head;
-            head = next;
+            cur = cur->next;
         }
-        return pre;
+        cur->next = head;
+        head->next = nullptr;
+        return newHead;
     }
 };
 // @lc code=end
@@ -47,7 +65,20 @@ int main()
 {
     Solution s;
     // 构建链表;
-
-    // s.reverseList();
+    vector<int> input = {1, 2, 3};
+    ListNode *head = new ListNode(input[0]);
+    ListNode *cur = head;
+    ListNode *pre = nullptr;
+    for (int i = 1; i < input.size(); i++)
+    {
+        cur->next = new ListNode(input[i]);
+        cur = cur->next;
+    }
+    ListNode *newHead = s.reverseList(head);
     // 输出链表
+    while (newHead)
+    {
+        cout << newHead->val << ' ';
+        newHead = newHead->next;
+    }
 }
