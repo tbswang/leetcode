@@ -44,7 +44,8 @@ public:
             else
                 return head;
         }
-
+        if(nextK->next == nullptr)
+            return reverse(head);
         ListNode *nextHead = reverseKGroup(nextK->next, k);
         nextK->next = nullptr;
         ListNode *newHead = reverse(head);
@@ -76,7 +77,7 @@ public:
 int main()
 {
     Solution s;
-    vector<int> input = {[1,2]};
+    vector<int> input = {1, 2};
     ListNode *head = new ListNode(input[0]);
     ListNode *cur = head;
     for (int i = 1; i < input.size(); i++)
