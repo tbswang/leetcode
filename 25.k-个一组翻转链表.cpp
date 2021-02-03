@@ -33,12 +33,46 @@ public:
     // 递归
     ListNode *reverseKGroup(ListNode *head, int k)
     {
+        ListNode *nextK = head;
+        for (int i = 0; i < k - 1; i++)
+        {
+            if (nextK->next != nullptr)
+                nextK = nextK->next;
+            else
+                return head;
+        }
+
+        ListNode *nextHead = reverseKGroup(nextK->next, k);
+        nextK->next = nullptr;
+        ListNode *newHead = reverse(head);
+        ListNode *newTail = getTail(newHead);
+        newTail->next = nextHead;
+        return newHead;
+    }
+    ListNode *getTail(ListNode *head)
+    {
+        ListNode *tail = head;
+        while (tail->next != nullptr)
+        {
+            tail = tail->next;
+        }
+        return tail;
+    }
+    ListNode *reverse(ListNode *head)
+    {
+        if (head->next == nullptr)
+            return head;
+        ListNode *last = reverse(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return last;
     }
 };
 // @lc code=end
 
 int main()
 {
+    Solution s;
     vector<int> input = {1, 2, 3, 4, 5};
     ListNode *head = new ListNode(input[0]);
     ListNode *cur = head;
@@ -47,9 +81,11 @@ int main()
         cur->next = new ListNode(input[i]);
         cur = cur->next;
     }
-    while (head)
+    head = s.reverseKGroup(head, 1);
+    while (head != nullptr)
     {
         cout << head->val << ' ';
-        cout << endl;
+        head = head->next;
     }
+    cout << endl;
 }
