@@ -2,6 +2,7 @@
   "files.associations": {
     "vector": "cpp",
     "ostream": "cpp",
-    "iterator": "cpp"
+    "iterator": "cpp",
+    "algorithm": "cpp"
   }
 }
