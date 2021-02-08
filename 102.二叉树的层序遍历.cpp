@@ -26,31 +26,24 @@ struct TreeNode {
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
+        if (root == nullptr)
+            return {};
         vector<vector<int>> res;
-        res.push_back({ root->val });
         queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {
             TreeNode* now = q.front();
-            q.pop();
-            cout << now->val << " ";
-            if (now->left != nullptr)
-                q.push(now->left);
-            if (now->right != nullptr)
-                q.push(now->right);
-            // if (now->left && now->right) {
-            //     res.push_back({ now->left->val, now->right->val });
-            //     q.push(now->left);
-            //     q.push(now->right);
-            // }
-            // else if (now->left && now->right == nullptr) {
-            //     res.push_back({ now->left->val });
-            //     q.push(now->left);
-            // }
-            // else if (now->left == nullptr && now->right) {
-            //     res.push_back({ now->right->val });
-            //     q.push(now->right);
-            // }
+            int levelSize = q.size();
+            res.push_back({});
+            for (int i = 0; i < levelSize; i++) {
+                auto head = q.front();
+                q.pop();
+                res.back().push_back(head->val);
+                if (head->left != nullptr)
+                    q.push(head->left);
+                if (head->right != nullptr)
+                    q.push(head->right);
+            }
         }
         return res;
     }
