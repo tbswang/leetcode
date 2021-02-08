@@ -4,6 +4,7 @@
     "ostream": "cpp",
     "iterator": "cpp",
     "algorithm": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "queue": "cpp"
   }
 }
