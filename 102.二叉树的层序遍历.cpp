@@ -32,7 +32,6 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {
-            TreeNode* now = q.front();
             int levelSize = q.size();
             res.push_back({});
             for (int i = 0; i < levelSize; i++) {
