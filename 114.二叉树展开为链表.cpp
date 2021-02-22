@@ -34,9 +34,9 @@ public:
     void flatten(TreeNode* root) {
         if (!root)
             return;
-        if(root->left)
+        if (root->left)
             flatten(root->left);
-        if(root->right)
+        if (root->right)
             flatten(root->right);
         TreeNode* rightest = getRightChild(root->left);
         rightest->right = root->right;
@@ -55,15 +55,11 @@ public:
 };
 // @lc code=end
 
-int main(){
-    vector<int> list = {1,2,3,4,5,6,7};
+int main() {
+    vector<int> list = { 1,2,3,4,5,6,7 };
     auto root = new TreeNode(list[0]);
-    queue<TreeNode*> q;
-    q.push(root);
-    for(int i = 1; i< floor(log2(list.size() + 1)); i++){
-        auto now = q.front();
-        q.pop();
-        int levelSize = exp2(i);
-        for(int j = )
+    
+    for (int i = 1; i < floor(log2(list.size() + 1)); i++) {
+        
     }
 }

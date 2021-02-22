@@ -5,6 +5,7 @@
     "iterator": "cpp",
     "algorithm": "cpp",
     "string": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "chrono": "cpp"
   }
 }
