@@ -28,18 +28,20 @@ struct TreeNode
 class Solution
 {
 public:
+    int sum = 0;
     TreeNode *convertBST(TreeNode *root)
     {
+        traverse(root);
+        return root;
     }
-    int traverse(TreeNode *root)
+    void traverse(TreeNode *root)
     {
         if (root == nullptr)
-            return 0;
-        int rightVal = traverse(root->right);
-        // print val;
-        root->val = root->val + rightVal;
-        root->left->val = root->val + traverse(root->left);
-        return root->val;
+            return;
+        traverse(root->right);
+        sum += root->val;
+        root->val = sum;
+        traverse(root->left);
     }
 };
 // @lc code=end
