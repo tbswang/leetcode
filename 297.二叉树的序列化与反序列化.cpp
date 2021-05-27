@@ -3,8 +3,8 @@
  *
  * [297] 二叉树的序列化与反序列化
  */
-#include <string>
 #include <queue>
+#include <string>
 using namespace std;
 struct TreeNode {
   int val;
@@ -27,11 +27,29 @@ public:
   string str;
   // Encodes a tree to a single string.
   string serialize(TreeNode *root) {
+    str = traverse(root);
+    // return "[" + str + "]";
+    return str;
+  }
+  /* postorder */
+  string traverse(TreeNode *root) {
+    if (root == nullptr)
+      return "null";
+    string left = traverse(root->left);
+    string right = traverse(root->right);
+    return root->val + "," + left + "," + right;
+  }
+  int idx;
+  // Decodes your encoded data to tree.
+  TreeNode *deserialize(string data) {
+    vector<string> *list = split(data, ',');
+  }
+  TreeNode *build(vector<string> *list) {
+    if (idx > list->size()-1 ) {
+      return nullptr;
+    }
     
   }
-
-  // Decodes your encoded data to tree.
-  TreeNode *deserialize(string data) {}
 };
 
 // Your Codec object will be instantiated and called as such:
