@@ -6,3 +6,4 @@
 *.dSYM*
 test
 /tmp
+node_modules
