@@ -16,5 +16,6 @@
     "*.tcc": "cpp",
     "array": "cpp",
     "__locale": "cpp",
+    "iosfwd": "cpp"
   }
 }

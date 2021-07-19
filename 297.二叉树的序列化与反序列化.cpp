@@ -30,54 +30,57 @@ public:
   string delimiter = ",";
   // Encodes a tree to a single string.
   string serialize(TreeNode *root) {
-    str = traverse(root);
-    // return "[" + str + "]";
+    preTravel(root);
     return str;
   }
-  /* postorder */
-  string traverse(TreeNode *root) {
-    if (root == nullptr)
-      return nullToken;
-    string left = traverse(root->left);
-    string right = traverse(root->right);
-    return to_string(root->val) + delimiter + left + delimiter + right;
+  void preTravel(TreeNode *root) {
+    if (root == nullptr) {
+      str += "null,";
+      return;
+    }
+    str += (root->val + ',');
+    preTravel(root->left);
+    preTravel(root->right);
   }
-  int idx;
+
   // Decodes your encoded data to tree.
   TreeNode *deserialize(string data) {
     vector<string> list;
-    size_t pos = 0;
-    while ((pos = data.find(delimiter)) != string::npos) {
-      list.push_back(data.substr(0, pos));
-      data.erase(0, pos + delimiter.length());
-    }
-    return build(&list);
+    tokenize(data, ',', list);
+    // 前序遍历
+    return deserialize(list);
   }
-  TreeNode *build(vector<string> *list) {
-    if (list->empty())
+  TreeNode *deserialize(vector<string> data) {
+    if (data.size() == 0)
       return nullptr;
-    if (list->at(0) == nullToken) {
-      list->erase(list->begin());
+    string str = data.at(0);
+    data.erase(data.begin());
+    if (str == "null") {
       return nullptr;
     }
-    TreeNode *root = new TreeNode(stoi(list->at(0)));
-    list->erase(list->begin());
-
-    root->left = build(list);
-    root->right = build(list);
+    TreeNode *root = new TreeNode(stoi(str));
+    root->left = deserialize(data);
+    root->right = deserialize(data);
     return root;
+  }
+
+  // 实现split的功能
+  void tokenize(const string &s, const char delim, vector<string> &out) {
+    string::size_type beg = 0;
+    for (auto end = 0; (end = s.find(delim, end)) != string::npos; ++end) {
+      out.push_back(s.substr(beg, end - beg));
+      beg = end + 1;
+    }
+    out.push_back(s.substr(beg));
   }
 };
 
 // Your Codec object will be instantiated and called as such:
-// Codec ser, deser;
-// TreeNode* ans = deser.deserialize(ser.serialize(root));
+
 // @lc code=end
 
 int main() {
-  string in = "1,2,null,4,null,null,3,null,null";
   Codec ser, deser;
-  auto mid = deser.deserialize(in);
-  auto out = ser.serialize(mid);
-  cout << out << endl;
+  // TreeNode* ans = deser.deserialize(ser.serialize(root));
+  TreeNode *ans = deser.deserialize("1,2,null,null,3,4,5");
 }
