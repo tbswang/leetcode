@@ -71,28 +71,45 @@ class TreeNode {
  *     }
  * }
  */
+// 解法1
+// function maxDepth(root: TreeNode | null): number {
+//   if(!root) return 0
 
-function maxDepth(root: TreeNode | null): number {
-  if(!root) return 0
-  // let curDepth = 0
-
-  function travel(node: TreeNode, curDepth){
-    if(!node.left && !node.right){
-      return curDepth
-    }
-    if(node.left && node.right){
-      return curDepth  + Math.max(travel(node.left, curDepth ), travel(node.right, curDepth))
-    }
-    if(node.left){
-      return curDepth + travel(node.left, curDepth)
-    }
-    if(node.right){
-      return curDepth + travel(node.right, curDepth)
-    }
+//   function travel(node: TreeNode, curDepth){
+//     if(!node.left && !node.right){
+//       return curDepth
+//     }
+//     if(node.left && node.right){
+//       return curDepth  + Math.max(travel(node.left, curDepth ), travel(node.right, curDepth))
+//     }
+//     if(node.left){
+//       return curDepth + travel(node.left, curDepth)
+//     }
+//     if(node.right){
+//       return curDepth + travel(node.right, curDepth)
+//     }
     
-  }
-  return travel(root, 1)
-  // return depth
+//   }
+//   return travel(root, 1)
+// };
+
+// 解法2： 2024.09.12
+function maxDepth(root: TreeNode | null): number {
+    let maxDep = 0
+    let curDep = 0
+    function travel(root){
+      if(root === null){
+        maxDep = Math.max(curDep, maxDep)
+        return 
+      }
+      curDep++
+      travel(root.left)
+      travel(root.right)
+      curDep--
+    }
+
+    travel(root)
+    return maxDep
 };
 // @lc code=end
 
